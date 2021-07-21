@@ -14,10 +14,11 @@ class TodoList(APIView):
         return JSONResponse(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        serializer = TodoItemSerializer(data=request.DATA)
+        serializer = TodoItemSerializer(data=request.data)
         if serializer.is_valid():
             saved_item = serializer.save()
-            saved_item.url = request.build_absolute_uri('/todo/' + str(saved_item.id))
+            saved_item.url = request.build_absolute_uri(
+                '/todo/' + str(saved_item.id))
             saved_item.save()
             serializer = TodoItemSerializer(instance=saved_item)
             return JSONResponse(serializer.data, status=status.HTTP_201_CREATED)
@@ -26,6 +27,7 @@ class TodoList(APIView):
     def delete(self, request, format=None):
         TodoItem.objects.all().delete()
         return JSONResponse(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class Todo(APIView):
     def get(self, request, pk, format=None):
@@ -49,7 +51,8 @@ class Todo(APIView):
             todoItem = TodoItem.objects.get(pk=pk)
         except TodoItem.DoesNotExist:
             return JSONResponse(None, status=status.HTTP_400_BAD_REQUEST)
-        serializer = TodoItemSerializer(data=request.DATA, instance=todoItem, partial=True)
+        serializer = TodoItemSerializer(
+            data=request.data, instance=todoItem, partial=True)
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=status.HTTP_200_OK)

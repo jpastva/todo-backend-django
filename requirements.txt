@@ -1,8 +1,9 @@
-Django==1.6
-dj-static==0.0.5
-gunicorn==18.0
-psycopg2==2.5.1
-static==0.4
-wsgiref==0.1.2
-djangorestframework==2.3.14
-django-cors-headers==0.12
+Django==3.2.5
+djangorestframework==3.12.4
+django-cors-headers==3.7.0
+asgiref==3.4.1
+autopep8==1.5.7
+pycodestyle==2.7.0
+pytz==2021.1
+sqlparse==0.4.1
+toml==0.10.2

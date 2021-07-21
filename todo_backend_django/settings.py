@@ -1,27 +1,29 @@
 import os.path
 # Django settings for todo_backend_django project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 DATABASE_PATH = PROJECT_ROOT + "/database.db"
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DATABASE_PATH                      # Or path to database file if using sqlite3.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Or path to database file if using sqlite3.
+        'NAME': DATABASE_PATH
     }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -41,7 +43,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'wejp)tpnmf2f-wapf%zm5cbc4+ytp&232b%&xnc=0ngrgr_l73'
+SECRET_KEY = 'z)9$rre3qim+n(iehx0^u30vdc071y!z%2($qdj(9mq9i6o$(d'
 
 
 MIDDLEWARE_CLASSES = (
@@ -67,7 +69,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
     'todo_backend_django',
@@ -79,6 +81,8 @@ INSTALLED_APPS = (
 CORS_ORIGIN_ALLOW_ALL = True
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
