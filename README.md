@@ -13,9 +13,16 @@ The app included an 'order' field, which was utilized for the default sort crite
 
 1. Clone the repository to a local directory.
 2. Create virtual environment to store dependencies.
-3. Install requirements<br />
-   `pip install -r requirements.txt`
-4. Initialize database<br />
-   `python manage.py makemigrations'<br /> 'python manage.py migrate`
-5. Run local server to view at http://127.0.0.1:8000/<br />
-   `python manage.py runserver`
+3. Install requirements
+```
+pip install -r requirements.txt
+```
+4. Initialize database
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+5. Run local server to view at http://127.0.0.1:8000/
+```
+python manage.py runserver
+```
