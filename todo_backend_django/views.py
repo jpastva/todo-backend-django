@@ -57,3 +57,33 @@ class Todo(APIView):
             serializer.save()
             return JSONResponse(serializer.data, status=status.HTTP_200_OK)
         return JSONResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+''' New view for displaying completed tasks '''
+
+
+class TodoDone(APIView):
+    def get(self, request, format=None):
+        done_items = TodoItem.objects.filter(completed=True)
+        serializer = TodoItemSerializer(done_items, many=True)
+        return JSONResponse(serializer.data, status=status.HTTP_200_OK)
+
+
+''' New view for displaying pending tasks '''
+
+
+class TodoPending(APIView):
+    def get(self, request, format=None):
+        pending_items = TodoItem.objects.filter(completed=False)
+        serializer = TodoItemSerializer(pending_items, many=True)
+        return JSONResponse(serializer.data, status=status.HTTP_200_OK)
+
+
+''' New view to sort tasks by oldest '''
+
+
+class TodoOldest(APIView):
+    def get(self, request, format=None):
+        list_items = TodoItem.objects.order_by('-created')
+        serializer = TodoItemSerializer(list_items, many=True)
+        return JSONResponse(serializer.data, status=status.HTTP_200_OK)

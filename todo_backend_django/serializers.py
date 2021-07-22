@@ -10,6 +10,7 @@ class TodoItemSerializer(serializers.ModelSerializer):
     url = serializers.CharField(
         max_length=256, required=False, allow_blank=True)
     order = serializers.IntegerField(required=False, allow_null=True)
+    created = serializers.ReadOnlyField()
 
     def restore_object(self, attrs, instance=None):
         if instance:
@@ -17,9 +18,10 @@ class TodoItemSerializer(serializers.ModelSerializer):
             instance.completed = attrs.get('completed', instance.completed)
             instance.url = attrs.get('url', instance.url)
             instance.order = attrs.get('order', instance.order)
+            instance.created = attrs.get('created', instance.created)
             return instance
         return TodoItem(**attrs)
 
     class Meta:
         model = TodoItem
-        fields = ('pk', 'title', 'completed', 'url', 'order')
+        fields = ('pk', 'title', 'completed', 'url', 'order', 'created')
